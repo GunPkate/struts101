@@ -5,7 +5,10 @@
  
 <struts>
 	<package name="struts_ecom" extends="struts-default">
-
+		<action name="loginTrigger" class="action.Login">
+			<result name="success">index.jsp</result>
+			<result name="failed">error.jsp</result>
+		</action>
 		
 
 	</package>

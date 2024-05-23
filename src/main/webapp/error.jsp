@@ -8,7 +8,7 @@
 <title>Struts 101</title>
 </head>
 <body>
-	Login Success
+	404 Not found
 
 </body>
 </html>
