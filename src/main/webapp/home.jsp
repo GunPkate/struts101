@@ -8,8 +8,9 @@
 <title>Struts 101</title>
 </head>
 <body>
-	home
+	home <br/>
 	
-	//<a href="login.jsp">Login</a>
+	<a href="login.jsp">Login</a><br/>
+
 </body>
 </html>

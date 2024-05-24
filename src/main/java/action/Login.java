@@ -1,10 +1,12 @@
 package action;
 
-public class Login {
-	private static String user;
-	private static String password;
+import com.opensymphony.xwork2.ActionSupport;
+
+public class Login extends ActionSupport {
+	private  String user;
+	private  String password;
 	
-	public static String getUser() {
+	public  String getUser() {
 		return user;
 	}
 
@@ -12,7 +14,7 @@ public class Login {
 		this.user = user;
 	}
 
-	public static String getPassword() {
+	public  String getPassword() {
 		return password;
 	}
 
@@ -25,7 +27,9 @@ public class Login {
 		String userInput = getUser();
 		String passwordInput = getPassword();
 		
-		if(userInput.equals("123") && passwordInput.equals("123") ) {
+		user = userInput;
+		
+		if( userInput.equals("123") && passwordInput.equals("123") ) {
 			result = "success";  
 		}
 	    return result;  
