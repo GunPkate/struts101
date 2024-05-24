@@ -8,6 +8,7 @@
 <title>Struts 101</title>
 </head>
 <body>
+	<jsp:include page="sharedcomponent/navbar.jsp"/>
 	home <br/>
 	
 	<a href="login.jsp">Login</a><br/>
