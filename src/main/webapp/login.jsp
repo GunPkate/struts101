@@ -8,7 +8,7 @@
 <title>Struts 101</title>
 </head>
 <body>
-
+	<jsp:include page="sharedcomponent/navbar.jsp"/>
 	<s:form action="loginTrigger">  
 		<s:textfield name="user" label="User"></s:textfield>  <br/>
 		<s:textfield name="password" label="Password"></s:textfield> <br/>  

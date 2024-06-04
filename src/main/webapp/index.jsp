@@ -9,6 +9,7 @@
 <title>Sum Result</title>
 </head>
 <body>
+	<jsp:include page="sharedcomponent/navbar.jsp"/>
 	Login Success
 	
       

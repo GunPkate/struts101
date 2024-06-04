@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+<%@ taglib prefix="s" uri="/struts-tags" %>
 
 <head>
 <meta charset="ISO-8859-1">
@@ -41,6 +42,9 @@
 		    </form>
 		    
 		    <a class="btn btn-success my-2 my-sm-0 ml-2" type="submit" href="login.jsp">Login</a>
+		    <div class="btn btn-success my-2 my-sm-0 ml-2" >
+		    	<s:property value="user"/>
+		    </div>
 		  </div>
 	</div>
 </body>

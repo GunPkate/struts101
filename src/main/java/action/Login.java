@@ -29,7 +29,7 @@ public class Login extends ActionSupport {
 		
 		user = userInput;
 		
-		if( userInput.equals("123") && passwordInput.equals("123") ) {
+		if( userInput.equals("gunp") && passwordInput.equals("123") ) {
 			result = "success";  
 		}
 	    return result;  
