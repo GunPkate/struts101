@@ -2,6 +2,10 @@ package action;
 
 import com.opensymphony.xwork2.ActionSupport;
 
+import constants.EcomConstant;
+import constants.EcomConstant.Role;
+import model.SessionProfile;
+
 public class Login extends ActionSupport {
 	private  String user;
 	private  String password;
@@ -29,7 +33,10 @@ public class Login extends ActionSupport {
 		
 		user = userInput;
 		
+		SessionProfile sessionProfile = new SessionProfile();
 		if( userInput.equals("gunp") && passwordInput.equals("123") ) {
+//			sessionProfile.setRole( (String)EcomConstant.Role.ROLE_MANAGER);
+			sessionProfile.setUserName(userInput);
 			result = "success";  
 		}
 	    return result;  
