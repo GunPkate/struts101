@@ -44,6 +44,10 @@
 		    <a class="btn btn-success my-2 my-sm-0 ml-2" type="submit" href="login.jsp">Login</a>
 		    <div class="btn btn-success my-2 my-sm-0 ml-2" >
 		    	<s:property value="user"/>
+		    	
+		    	<s:if test="#session.role != null">
+		    		<s:property value="#session.role"/>
+				</s:if>
 		    </div>
 		  </div>
 	</div>
