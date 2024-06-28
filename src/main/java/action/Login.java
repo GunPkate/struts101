@@ -1,13 +1,19 @@
 package action;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Map;
 
 import com.opensymphony.xwork2.ActionSupport;
 
 import constants.EcomConstant;
 import constants.EcomConstant.Role;
+import model.Product;
 import model.SessionProfile;
 import action.BaseAction;
+import connection.ConnectionDB;
 import constants.EcomConstant;
 
 public class Login extends BaseAction {
@@ -31,21 +37,35 @@ public class Login extends BaseAction {
 	}
 
 	@SuppressWarnings("unchecked")
-	public String execute(){  
+	public String execute() throws ClassNotFoundException, SQLException{  
 		String result = "failed";
 		String userInput = getUser();
 		String passwordInput = getPassword();
+		String query = "select * from customer;";
 		
 		user = userInput;
 		
-		SessionProfile sessionProfile = new SessionProfile();
-		if( userInput.equals("gunp") && passwordInput.equals("123") ) {
-			Role.ROLE_MANAGER.getRole();
-			session.put("role", userInput);
-//			sessionProfile.setRole( (String)EcomConstant.Role.ROLE_MANAGER);
-//			sessionProfile.setUserName(userInput);
-			result = "success";  
+		Connection conn = ConnectionDB.DB();
+		Statement statement =  conn.createStatement();
+		ResultSet resultSet = statement.executeQuery(query);
+	
+		while (resultSet.next())
+		{
+		    String cId = resultSet.getString("id");
+		    String cName = resultSet.getString("name");
+		    String cPass = resultSet.getString("password");
+
+			if( userInput.equals(cName) && passwordInput.equals(cPass) ) {
+				Role.ROLE_MANAGER.getRole();
+				session.put("role", userInput);
+//				sessionProfile.setRole( (String)EcomConstant.Role.ROLE_MANAGER);
+//				sessionProfile.setUserName(userInput);
+				result = "success";  
+			}
 		}
+		
+		SessionProfile sessionProfile = new SessionProfile();
+
 	    return result;  
 	}  
 }

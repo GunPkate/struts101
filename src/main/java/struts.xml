@@ -10,6 +10,11 @@
 			<result name="failed">error.jsp</result>
 		</action>
 		
+		<action name="LoadProductTrigger" class="action.LoadProduct">
+			<result name="success">home.jsp</result>
+			<result name="failed">error.jsp</result>
+		</action>
+		
 
 	</package>
 </struts>
