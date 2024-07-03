@@ -10,7 +10,7 @@
 			<result name="failed">error.jsp</result>
 		</action>
 		
-		<action name="LoadProductTrigger" class="action.LoadProduct">
+		<action name="LoadProductTrigger" class="action.LoadProduct" method="execute">
 			<result name="success">home.jsp</result>
 			<result name="failed">error.jsp</result>
 		</action>

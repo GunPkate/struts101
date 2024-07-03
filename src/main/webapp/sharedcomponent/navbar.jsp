@@ -9,6 +9,7 @@
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 </head>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <body>
 	<div class="navbar navbar-expand-lg navbar-dark bg-dark text-white">
 		<a class="navbar-brand" href="home.jsp">Struts Shop</a>
