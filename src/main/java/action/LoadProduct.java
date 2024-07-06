@@ -18,40 +18,15 @@ import java.sql.SQLException;
 
 public class LoadProduct extends BaseAction {
 
-	List<Product> productList = null;
-	
-
-	String query = "select p.name, pd.description, pd.rating, pd.price  from product p\r\n"
-			+ "left join product_detail pd \r\n"
-			+ "on pd.product_code = p.id ";
-	
-	
+	public static List<Product> productList = null;
+	String searchInput = "";
 	
 	public String execute() throws ClassNotFoundException, SQLException {
 		
 		try{		
-			Product product = new Product();
 			Connection conn = ConnectionDB.DB();
-			Statement statement =  conn.createStatement();
-			ResultSet resultSet = statement.executeQuery(query);
-//		
-
-//			if(!productName.equals("")) {
-//				query += "where p.name like '"+ productName + "' ";
-//			}
-			
-			ArrayList<Product> temp = new ArrayList();
-			while (resultSet.next())
-			{
-				Product productItem = new Product();
-			    productItem.setName(resultSet.getString("name")); 
-			    productItem.setDesc(resultSet.getString("description"));
-			    productItem.setRating(resultSet.getFloat("rating"));
-			    productItem.setPrice(resultSet.getFloat("price"));
-			    temp.add(productItem);
-			}
-			productList = temp;
-
+			productList = queryProduct(conn,"");
+			conn.close();
 			
 		} catch (Exception e) {
 		    System.out.println("Error " + e.getMessage());
@@ -59,8 +34,47 @@ public class LoadProduct extends BaseAction {
 		
 		return "success";
 	}
+	
+	public String filterProduct() throws ClassNotFoundException, SQLException {
+		try {
+			String input = getSearchInput();
+			Connection conn = ConnectionDB.DB();
+			productList = queryProduct(conn,input);
+			conn.close();
+			setProductList(null);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return "success";
+	}
+
+	private List<Product> queryProduct(Connection conn,String queryInput) throws SQLException {
+		
+		String query = "select p.name, pd.description, pd.rating, pd.price  from product p\r\n"
+				+ "left join product_detail pd \r\n"
+				+ "on pd.product_code = p.id ";
+		if(!queryInput.equals("") || !queryInput.isBlank()) {
+			query += "where p.name like '%"+ queryInput + "%' ";
+		}
+		
+		Statement statement =  conn.createStatement();
+		ResultSet resultSet = statement.executeQuery(query);
+//	
 
 
+		ArrayList<Product> temp = new ArrayList<Product>();
+		while (resultSet.next())
+		{
+			Product productItem = new Product();
+		    productItem.setName(resultSet.getString("name")); 
+		    productItem.setDesc(resultSet.getString("description"));
+		    productItem.setRating(resultSet.getFloat("rating"));
+		    productItem.setPrice(resultSet.getFloat("price"));
+		    temp.add(productItem);
+		}
+		return temp;
+		
+	}
 
 	public List<Product> getProductList() {
 		return productList;
@@ -72,7 +86,12 @@ public class LoadProduct extends BaseAction {
 		this.productList = productList;
 	}
 
+	public String getSearchInput() {
+		return searchInput;
+	}
 
-
+	public void setSearchInput(String searchInput) {
+		this.searchInput = searchInput;
+	}
 	
 }
