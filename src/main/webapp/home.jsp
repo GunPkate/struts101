@@ -31,24 +31,22 @@
 						<table id="productTable">
 							<thead>
 								<tr>
-									<th>Name</th>
-									<th>Description</th>
-									<th>Rating</th>
-									<th>price</th>
+									<th class="col-3">Name</th>
+									<th class="col-4">Description</th>
+									<th class="col-2">Rating</th>
+									<th class="col-3">price</th>
 								</tr>
 							</thead>
-							<tbody>
-								
+							<tbody>								
 							`	
-				if(response.filterProduct != null && response.filterProduct.length > 0){
-						
+				if(response.filterProduct != null && response.filterProduct.length > 0){					
 					for (var i = 0; i < response.filterProduct.length; i++) {
 						newTableData += `
 							<tr> 
-							<td>` +response.filterProduct[i].name +`</td>` +
-							`<td>`+response.filterProduct[i].desc +`</td>` +
-							`<td>`+response.filterProduct[i].rating +`</td>` +
-							`<td>`+response.filterProduct[i].price +`</td>` +
+							<td class="col-3">` +response.filterProduct[i].name +`</td>` +
+							`<td class="col-4">`+response.filterProduct[i].desc +`</td>` +
+							`<td class="col-2">`+response.filterProduct[i].rating +`</td>` +
+							`<td class="col-3">`+response.filterProduct[i].price +`</td>` +
 							`</tr>
 						`
 					}
