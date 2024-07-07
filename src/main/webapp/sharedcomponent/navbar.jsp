@@ -39,7 +39,7 @@
 		    </ul>
 		    <form class="form-inline my-2 my-lg-0">
 		      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="searchNav">
-		      <button class="btn btn-success my-2 my-sm-0" type="submit">Search</button>
+		      <div class="btn btn-success my-2 my-sm-0" id="searchNavBtn">Search</div>
 		    </form>
 		    
 		    <a class="btn btn-success my-2 my-sm-0 ml-2" type="submit" href="login.jsp">Login</a>

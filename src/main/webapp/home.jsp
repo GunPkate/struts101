@@ -1,3 +1,5 @@
+<%@page import="org.apache.commons.lang3.builder.ToStringBuilder"%>
+<%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="/struts-tags" prefix="s" %>  
@@ -15,24 +17,52 @@
 <script src="js/jquery-3.7.1.js"></script>
 <script>
 
-	$(document).ready(function(){
-		
-
-/* 			let a = document.querySelector('.result')
-			console.log(123,a) */
-
+	$(document).ready(function(){	
+		getData();
 	})
 	
-/* 	function getData(){
-		$.ajax({
-			type: "POST",
-			url: '${pageContext.request.contextPath}/home.jsp',
-			success: function(response){
-				$('.result').html(response)
-				console.log(response)
+ 	function getData(textData){
+		$('#searchInput').val()
+ 		$.ajax({
+			type: "GET",
+			url: '${pageContext.request.contextPath}/filterProduct.action?searchInput='+$('#searchInput').val(),
+			success: function(response){	
+				let newTableData = `
+						<table id="productTable">
+							<thead>
+								<tr>
+									<th>Name</th>
+									<th>Description</th>
+									<th>Rating</th>
+									<th>price</th>
+								</tr>
+							</thead>
+							<tbody>
+								
+							`	
+				if(response.filterProduct != null && response.filterProduct.length > 0){
+						
+					for (var i = 0; i < response.filterProduct.length; i++) {
+						newTableData += `
+							<tr> 
+							<td>` +response.filterProduct[i].name +`</td>` +
+							`<td>`+response.filterProduct[i].desc +`</td>` +
+							`<td>`+response.filterProduct[i].rating +`</td>` +
+							`<td>`+response.filterProduct[i].price +`</td>` +
+							`</tr>
+						`
+					}
+				}
+				newTableData += `</tbody></table>`
+				$('#productTable').html(newTableData);
 			}
-		})
-	} */
+		}) 
+		
+/* 		$.getJSON('${pageContext.request.contextPath}/filterProduct.action?searchInput='+$('#searchInput').val(),{})
+		.done(function(result){
+			console.log('${pageContext.request.contextPath}/filterProduct.action?searchInput='+$('#searchInput').val()) 
+		}) */
+	} 
 
 </script>
 <body>
@@ -61,13 +91,14 @@
 			<div class="col-1"></div>
 			<div class="col-5">
 				<s:form action="filterProduct">
-					<s:textfield id="searchInput" name="searchInput"></s:textfield>
-					<button type="submit">Filter</button>
+					<s:hidden id="searchInput" name="searchInput"></s:hidden>
+					<!-- <button type="submit">Filter</button> -->
+					
 				</s:form>	
 			</div>
 		</div>
 		<div class="col-12">
-				<table id="table-1">
+				<table id="productTable">
 					<thead>
 						<tr>
 							<th>Name</th>
@@ -93,12 +124,7 @@
 		<br>
 	
 
-		<display:table 	id="productTable"  name="productList" pagesize="5" requestURI="">
-				<display:column property="name" title="name" ></display:column>
-				<display:column property="desc" title="desc" sortable="true"></display:column>
-				<display:column property="rating" title="rating" sortable="true"></display:column>
-				<display:column property="price" title="price" sortable="true"></display:column>
-		</display:table>
+
 		
 	</div>
 	<a href="login.jsp">Login</a><br/>
@@ -114,8 +140,8 @@
 		console.log($('#searchInput').val());
 	}
 	
-	console.log(searchNav);
-	console.log(searchNav.value);
+	const searchNavBtn = document.getElementById("searchNavBtn");
+	searchNavBtn.addEventListener("click",getData)
 </script>
 
 </html>

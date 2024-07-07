@@ -4,7 +4,8 @@
     "http://struts.apache.org/dtds/struts-2.0.dtd">
  
 <struts>
-	<package name="struts101" extends="struts-default">
+	<package name="struts101" extends="struts-default,json-default">
+	
 		<action name="loginTrigger" class="action.Login">
 			<result name="success">index.jsp</result>
 			<result name="failed">error.jsp</result>
@@ -16,8 +17,10 @@
 		</action>
 		
 		<action name="filterProduct" class="action.LoadProduct" method="filterProduct">
-			<result name="success">home.jsp</result>
-			<result name="failed">error.jsp</result>
+			<result name="success" type="json">
+				<param name="root">jsonData</param>
+			</result>
+
 		</action>
 		
 

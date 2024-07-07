@@ -2,8 +2,10 @@ package action;
 
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.ServletActionContext;
@@ -15,10 +17,13 @@ import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import action.BaseAction;
+import java.util.Map;
 
 public class LoadProduct extends BaseAction {
 
 	public static List<Product> productList = null;
+	private Map<String,Object> jsonData = new HashMap<String,Object>();
 	String searchInput = "";
 	
 	public String execute() throws ClassNotFoundException, SQLException {
@@ -37,11 +42,13 @@ public class LoadProduct extends BaseAction {
 	
 	public String filterProduct() throws ClassNotFoundException, SQLException {
 		try {
-			String input = getSearchInput();
+			HttpServletRequest req = getRequestServ();
+			String[] input = req.getParameterValues("searchInput");
 			Connection conn = ConnectionDB.DB();
-			productList = queryProduct(conn,input);
+			productList = queryProduct(conn,input[0]);
+			jsonData.put("filterProduct", productList);
+
 			conn.close();
-			setProductList(null);
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -93,5 +100,15 @@ public class LoadProduct extends BaseAction {
 	public void setSearchInput(String searchInput) {
 		this.searchInput = searchInput;
 	}
+
+	public Map<String, Object> getJsonData() {
+		return jsonData;
+	}
+
+	public void setJsonData(Map<String, Object> jsonData) {
+		this.jsonData = jsonData;
+	}
+	
+	
 	
 }
