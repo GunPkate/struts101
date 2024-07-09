@@ -4,6 +4,7 @@ public class Product {
 	String name;
 	String img;
 	String desc;
+	String id;
 	float price;
 	float rating;
 	
@@ -38,6 +39,13 @@ public class Product {
 	public void setRating(float rating) {
 		this.rating = rating;
 	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public String getId() {
+		return id;
+	}
+	
 	
 	public Product(){}
 }

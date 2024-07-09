@@ -57,7 +57,7 @@ public class LoadProduct extends BaseAction {
 
 	private List<Product> queryProduct(Connection conn,String queryInput) throws SQLException {
 		
-		String query = "select p.name, pd.description, pd.rating, pd.price  from product p\r\n"
+		String query = "select p.id, p.name, pd.description, pd.rating, pd.price  from product p\r\n"
 				+ "left join product_detail pd \r\n"
 				+ "on pd.product_code = p.id ";
 		if(!queryInput.equals("") || !queryInput.isBlank()) {
@@ -73,6 +73,7 @@ public class LoadProduct extends BaseAction {
 		while (resultSet.next())
 		{
 			Product productItem = new Product();
+			productItem.setId(resultSet.getString("id")); 
 		    productItem.setName(resultSet.getString("name")); 
 		    productItem.setDesc(resultSet.getString("description"));
 		    productItem.setRating(resultSet.getFloat("rating"));

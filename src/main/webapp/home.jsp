@@ -43,7 +43,7 @@
 					for (var i = 0; i < response.filterProduct.length; i++) {
 						newTableData += `
 							<tr> 
-							<td class="col-3">` +response.filterProduct[i].name +`</td>` +
+							<td class="col-3"><a href="pages/products/productVariant.jsp?id=\${response.filterProduct[i].id}">` +response.filterProduct[i].name +`</a></td>` +
 							`<td class="col-4">`+response.filterProduct[i].desc +`</td>` +
 							`<td class="col-2">`+response.filterProduct[i].rating +`</td>` +
 							`<td class="col-3">`+response.filterProduct[i].price +`</td>` +

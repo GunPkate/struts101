@@ -20,9 +20,13 @@
 			<result name="success" type="json">
 				<param name="root">jsonData</param>
 			</result>
-
 		</action>
 		
+		<action name="filterProductVariant" class="action.LoadProductVariant" method="">
+			<result name="success" type="json">
+				<param name="root">variant</param>
+			</result>
+		</action>
 
 	</package>
 </struts>
