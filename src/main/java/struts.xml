@@ -22,7 +22,7 @@
 			</result>
 		</action>
 		
-		<action name="filterProductVariant" class="action.LoadProductVariant" method="">
+		<action name="filterProductVariant" class="action.LoadProductVariant" method="filterProductVariant">
 			<result name="success" type="json">
 				<param name="root">variant</param>
 			</result>
