@@ -44,6 +44,7 @@ public class LoadProductVariant extends BaseAction{
 				ProductVariant pv = new ProductVariant();
 				pv.setId(rs.getString("id"));
 				pv.setColor_code(rs.getString("color_code"));
+				pv.setColor(rs.getString("color"));
 				pv.setRemains(rs.getInt("remains"));
 				pv.setSize(rs.getString("size"));
 				temp.add(pv);
