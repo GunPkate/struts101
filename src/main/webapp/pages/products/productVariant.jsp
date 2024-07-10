@@ -17,14 +17,14 @@
 	$(document).ready(()=>getData())
 	function getData(){
 		const params = window.location.href.split('=')
-		console.log(params);
-		const url = `${pageContext.request.contextPath}/filterProductVariant.action?id=\${params[1]}&searchInput=$('#searchInput').val()`
-		console.log(url)
+
+		const url = '${pageContext.request.contextPath}/filterProductVariant.action?id=' + params[1] + '&searchInput='+ $('#searchNav').val();
+		
 		$.ajax({
 			type:"GET",
 			url: url,
 			success: function(response){
-				console.log(${pageContext.request.contextPath}/)
+
 				let newDataTable = "<tr>";
 				newDataTable += `
 					<th> Action </th>
@@ -36,7 +36,7 @@
 				if(response != null){
 					let newData = response.variant;
 					for (let i = 0; i < newData.length; i++) {
-						console.log(newData[i]);
+
 						newDataTable += `
 						<tr>
 							<td class="col-2"> <button class="btn btn-warning">123</button> <button class="btn btn-danger">123</button> </td>
@@ -65,11 +65,7 @@
 </body>
 <script> 
 	const searchNav = document.getElementById("searchNav");
-	searchNav.addEventListener("blur",setData)
-	function setData(){
-		$('#searchInput').val(searchNav.value); 
-		console.log($('#searchInput').val());
-	}
+
 	
 	const searchNavBtn = document.getElementById("searchNavBtn");
 	searchNavBtn.addEventListener("click",getData)

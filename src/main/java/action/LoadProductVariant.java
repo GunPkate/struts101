@@ -37,7 +37,12 @@ public class LoadProductVariant extends BaseAction{
 		ArrayList<ProductVariant> temp = new ArrayList<ProductVariant>();
 		try {
 			String query = "select * from product_variant pv where product_code = '" + id + "'";
-//			if(search != null || !search.equals("") ) query += " where product_code = '" + search + "';";
+			if(search != null && !search.equals("") ) {		
+				query += " and (";
+				query += " id like '%" + search + "%' ";
+				query += " or color like '%" + search + "%' ";
+				query += " ); ";
+			} 
 			Statement st = conn.createStatement();
 			ResultSet rs = st.executeQuery(query);
 			while(rs.next()) {
